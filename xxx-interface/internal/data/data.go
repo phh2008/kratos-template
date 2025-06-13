@@ -3,6 +3,8 @@ package data
 import (
     "context"
     "example.com/xxx/common-lib/orm"
+    "example.com/xxx/common-lib/oss"
+    "example.com/xxx/common-lib/oss/storage"
     "example.com/xxx/interface/internal/conf"
     userv1 "example.com/xxx/user-service/api/user/v1"
     "github.com/go-kratos/kratos/contrib/registry/consul/v2"
@@ -25,6 +27,8 @@ var ProviderSet = wire.NewSet(
     NewUserServiceClient,
     NewRoleServiceClient,
     NewDemoRepo,
+    NewAttachmentRepo,
+    NewStorage,
 )
 
 // Data .
@@ -32,6 +36,7 @@ type Data struct {
     //DB *gorm.DB
     uc userv1.UserClient
     rc userv1.RoleClient
+    sc storage.Storage
 }
 
 func NewDb(c *conf.Bootstrap) *gorm.DB {
@@ -48,6 +53,11 @@ func NewData(
         slog.Info("closing the data resources")
     }
     return &Data{uc: uc, rc: rc}, cleanup, nil
+}
+
+func NewStorage() storage.Storage {
+    // 本地文件存储
+    return oss.NewStorage(&storage.Config{BaseFolder: "files"})
 }
 
 func NewDiscovery(conf *conf.Bootstrap) registry.Discovery {

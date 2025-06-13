@@ -21,6 +21,7 @@ func NewHTTPServer(
     cf *conf.Bootstrap,
     uc userv1.UserClient,
     demoService *service.DemoService,
+    attachmentService *service.AttachmentService,
 ) *http.Server {
     c := cf.Server
     var opts = []http.ServerOption{
@@ -65,5 +66,34 @@ func NewHTTPServer(
     opts = append(opts, http.PathPrefix("/api/v1"))
     srv := http.NewServer(opts...)
     v1.RegisterDemoHTTPServer(srv, demoService)
+
+    // 上传文件处理
+    route := srv.Route("/")
+    route.POST("/upload", uploadHandler(attachmentService))
     return srv
+}
+
+func uploadHandler(srv *service.AttachmentService) func(ctx http.Context) error {
+    return func(ctx http.Context) error {
+        request := ctx.Request()
+        //fileName := in.FormValue("name")
+        f, header, err := request.FormFile("file")
+        if err != nil {
+            return err
+        }
+        in := service.UploadReq{
+            File:       f,
+            FileHeader: header,
+        }
+        http.SetOperation(ctx, "/v1.upload")
+        h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
+            return srv.Upload(ctx, req.(*service.UploadReq))
+        })
+        out, err := h(ctx, &in)
+        if err != nil {
+            return err
+        }
+        reply := out.(*service.UploadResp)
+        return ctx.Result(200, reply)
+    }
 }
