@@ -1,11 +1,11 @@
 syntax = "proto3";
 
-package api.helloworld.v1;
+package api.user.v1;
 import "google/api/annotations.proto";
 
 option go_package = "example.com/xxx/user-service/api/user/v1;v1";
 option java_multiple_files = true;
-option java_package = "api.helloworld.v1";
+option java_package = "api.user.v1";
 
 // 用户管理
 service User {
