@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.6
 // 	protoc        v4.23.4
-// source: api/interface/v1/demo.proto
+// source: interface/v1/demo.proto
 
 package v1
 
@@ -36,7 +36,7 @@ type RoleListRequest struct {
 
 func (x *RoleListRequest) Reset() {
 	*x = RoleListRequest{}
-	mi := &file_api_interface_v1_demo_proto_msgTypes[0]
+	mi := &file_interface_v1_demo_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -48,7 +48,7 @@ func (x *RoleListRequest) String() string {
 func (*RoleListRequest) ProtoMessage() {}
 
 func (x *RoleListRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_interface_v1_demo_proto_msgTypes[0]
+	mi := &file_interface_v1_demo_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -61,7 +61,7 @@ func (x *RoleListRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RoleListRequest.ProtoReflect.Descriptor instead.
 func (*RoleListRequest) Descriptor() ([]byte, []int) {
-	return file_api_interface_v1_demo_proto_rawDescGZIP(), []int{0}
+	return file_interface_v1_demo_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *RoleListRequest) GetPageNo() int64 {
@@ -117,7 +117,7 @@ type RoleReply struct {
 
 func (x *RoleReply) Reset() {
 	*x = RoleReply{}
-	mi := &file_api_interface_v1_demo_proto_msgTypes[1]
+	mi := &file_interface_v1_demo_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -129,7 +129,7 @@ func (x *RoleReply) String() string {
 func (*RoleReply) ProtoMessage() {}
 
 func (x *RoleReply) ProtoReflect() protoreflect.Message {
-	mi := &file_api_interface_v1_demo_proto_msgTypes[1]
+	mi := &file_interface_v1_demo_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -142,7 +142,7 @@ func (x *RoleReply) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RoleReply.ProtoReflect.Descriptor instead.
 func (*RoleReply) Descriptor() ([]byte, []int) {
-	return file_api_interface_v1_demo_proto_rawDescGZIP(), []int{1}
+	return file_interface_v1_demo_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *RoleReply) GetId() int64 {
@@ -178,7 +178,7 @@ type RoleListReply struct {
 
 func (x *RoleListReply) Reset() {
 	*x = RoleListReply{}
-	mi := &file_api_interface_v1_demo_proto_msgTypes[2]
+	mi := &file_interface_v1_demo_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -190,7 +190,7 @@ func (x *RoleListReply) String() string {
 func (*RoleListReply) ProtoMessage() {}
 
 func (x *RoleListReply) ProtoReflect() protoreflect.Message {
-	mi := &file_api_interface_v1_demo_proto_msgTypes[2]
+	mi := &file_interface_v1_demo_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -203,7 +203,7 @@ func (x *RoleListReply) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RoleListReply.ProtoReflect.Descriptor instead.
 func (*RoleListReply) Descriptor() ([]byte, []int) {
-	return file_api_interface_v1_demo_proto_rawDescGZIP(), []int{2}
+	return file_interface_v1_demo_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *RoleListReply) GetCount() int64 {
@@ -234,11 +234,11 @@ func (x *RoleListReply) GetRoleList() []*RoleReply {
 	return nil
 }
 
-var File_api_interface_v1_demo_proto protoreflect.FileDescriptor
+var File_interface_v1_demo_proto protoreflect.FileDescriptor
 
-const file_api_interface_v1_demo_proto_rawDesc = "" +
+const file_interface_v1_demo_proto_rawDesc = "" +
 	"\n" +
-	"\x1bapi/interface/v1/demo.proto\x12\x10api.interface.v1\x1a\x1cgoogle/api/annotations.proto\"\xaf\x01\n" +
+	"\x17interface/v1/demo.proto\x12\x10api.interface.v1\x1a\x1cgoogle/api/annotations.proto\"\xaf\x01\n" +
 	"\x0fRoleListRequest\x12\x16\n" +
 	"\x06pageNo\x18\x01 \x01(\x03R\x06pageNo\x12\x1a\n" +
 	"\bpageSize\x18\x02 \x01(\x03R\bpageSize\x12\x12\n" +
@@ -254,31 +254,30 @@ const file_api_interface_v1_demo_proto_rawDesc = "" +
 	"\x05count\x18\x01 \x01(\x03R\x05count\x12\x17\n" +
 	"\apage_no\x18\x02 \x01(\x05R\x06pageNo\x12\x1b\n" +
 	"\tpage_size\x18\x03 \x01(\x05R\bpageSize\x127\n" +
-	"\broleList\x18\x04 \x03(\v2\x1b.api.interface.v1.RoleReplyR\broleList2j\n" +
-	"\x04Demo\x12b\n" +
-	"\bListPage\x12!.api.interface.v1.RoleListRequest\x1a\x1f.api.interface.v1.RoleListReply\"\x12\x82\xd3\xe4\x93\x02\f\x12\n" +
-	"/role/listBC\n" +
+	"\broleList\x18\x04 \x03(\v2\x1b.api.interface.v1.RoleReplyR\broleList2m\n" +
+	"\x04Demo\x12e\n" +
+	"\bListPage\x12!.api.interface.v1.RoleListRequest\x1a\x1f.api.interface.v1.RoleListReply\"\x15\x82\xd3\xe4\x93\x02\x0f\x12\r/v1/role/listBC\n" +
 	"\x10api.interface.v1P\x01Z-example.com/xxx/interface/api/interface/v1;v1b\x06proto3"
 
 var (
-	file_api_interface_v1_demo_proto_rawDescOnce sync.Once
-	file_api_interface_v1_demo_proto_rawDescData []byte
+	file_interface_v1_demo_proto_rawDescOnce sync.Once
+	file_interface_v1_demo_proto_rawDescData []byte
 )
 
-func file_api_interface_v1_demo_proto_rawDescGZIP() []byte {
-	file_api_interface_v1_demo_proto_rawDescOnce.Do(func() {
-		file_api_interface_v1_demo_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_api_interface_v1_demo_proto_rawDesc), len(file_api_interface_v1_demo_proto_rawDesc)))
+func file_interface_v1_demo_proto_rawDescGZIP() []byte {
+	file_interface_v1_demo_proto_rawDescOnce.Do(func() {
+		file_interface_v1_demo_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_interface_v1_demo_proto_rawDesc), len(file_interface_v1_demo_proto_rawDesc)))
 	})
-	return file_api_interface_v1_demo_proto_rawDescData
+	return file_interface_v1_demo_proto_rawDescData
 }
 
-var file_api_interface_v1_demo_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
-var file_api_interface_v1_demo_proto_goTypes = []any{
+var file_interface_v1_demo_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_interface_v1_demo_proto_goTypes = []any{
 	(*RoleListRequest)(nil), // 0: api.interface.v1.RoleListRequest
 	(*RoleReply)(nil),       // 1: api.interface.v1.RoleReply
 	(*RoleListReply)(nil),   // 2: api.interface.v1.RoleListReply
 }
-var file_api_interface_v1_demo_proto_depIdxs = []int32{
+var file_interface_v1_demo_proto_depIdxs = []int32{
 	1, // 0: api.interface.v1.RoleListReply.roleList:type_name -> api.interface.v1.RoleReply
 	0, // 1: api.interface.v1.Demo.ListPage:input_type -> api.interface.v1.RoleListRequest
 	2, // 2: api.interface.v1.Demo.ListPage:output_type -> api.interface.v1.RoleListReply
@@ -289,26 +288,26 @@ var file_api_interface_v1_demo_proto_depIdxs = []int32{
 	0, // [0:1] is the sub-list for field type_name
 }
 
-func init() { file_api_interface_v1_demo_proto_init() }
-func file_api_interface_v1_demo_proto_init() {
-	if File_api_interface_v1_demo_proto != nil {
+func init() { file_interface_v1_demo_proto_init() }
+func file_interface_v1_demo_proto_init() {
+	if File_interface_v1_demo_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_interface_v1_demo_proto_rawDesc), len(file_api_interface_v1_demo_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_interface_v1_demo_proto_rawDesc), len(file_interface_v1_demo_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_api_interface_v1_demo_proto_goTypes,
-		DependencyIndexes: file_api_interface_v1_demo_proto_depIdxs,
-		MessageInfos:      file_api_interface_v1_demo_proto_msgTypes,
+		GoTypes:           file_interface_v1_demo_proto_goTypes,
+		DependencyIndexes: file_interface_v1_demo_proto_depIdxs,
+		MessageInfos:      file_interface_v1_demo_proto_msgTypes,
 	}.Build()
-	File_api_interface_v1_demo_proto = out.File
-	file_api_interface_v1_demo_proto_goTypes = nil
-	file_api_interface_v1_demo_proto_depIdxs = nil
+	File_interface_v1_demo_proto = out.File
+	file_interface_v1_demo_proto_goTypes = nil
+	file_interface_v1_demo_proto_depIdxs = nil
 }

@@ -11,18 +11,18 @@ option java_package = "api.user.v1";
 service Permission {
   rpc ListPage (PermListRequest) returns (PermListReply){
     option (google.api.http) = {
-      get: "/permission/list",
+      get: "/v1/permission/list",
     };
   }
   rpc Add (PermSaveRequest) returns (PermReply){
     option (google.api.http) = {
-      post: "/permission/add",
+      post: "/v1/permission/add",
       body: "*",
     };
   }
   rpc Update (PermSaveRequest) returns (PermReply){
     option (google.api.http) = {
-      post: "/permission/update",
+      post: "/v1/permission/update",
       body: "*",
     };
   }

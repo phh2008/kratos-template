@@ -10,7 +10,7 @@ option java_package = "api.interface.v1";
 service Demo {
   rpc ListPage (RoleListRequest) returns (RoleListReply){
     option (google.api.http) = {
-      get: "/role/list",
+      get: "/v1/role/list",
     };
   }
 }

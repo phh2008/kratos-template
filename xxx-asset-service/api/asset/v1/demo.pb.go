@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.6
 // 	protoc        v4.23.4
-// source: api/asset/v1/demo.proto
+// source: asset/v1/demo.proto
 
 package v1
 
@@ -29,7 +29,7 @@ type CreateDemoRequest struct {
 
 func (x *CreateDemoRequest) Reset() {
 	*x = CreateDemoRequest{}
-	mi := &file_api_asset_v1_demo_proto_msgTypes[0]
+	mi := &file_asset_v1_demo_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -41,7 +41,7 @@ func (x *CreateDemoRequest) String() string {
 func (*CreateDemoRequest) ProtoMessage() {}
 
 func (x *CreateDemoRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_asset_v1_demo_proto_msgTypes[0]
+	mi := &file_asset_v1_demo_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -54,7 +54,7 @@ func (x *CreateDemoRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateDemoRequest.ProtoReflect.Descriptor instead.
 func (*CreateDemoRequest) Descriptor() ([]byte, []int) {
-	return file_api_asset_v1_demo_proto_rawDescGZIP(), []int{0}
+	return file_asset_v1_demo_proto_rawDescGZIP(), []int{0}
 }
 
 type CreateDemoReply struct {
@@ -65,7 +65,7 @@ type CreateDemoReply struct {
 
 func (x *CreateDemoReply) Reset() {
 	*x = CreateDemoReply{}
-	mi := &file_api_asset_v1_demo_proto_msgTypes[1]
+	mi := &file_asset_v1_demo_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -77,7 +77,7 @@ func (x *CreateDemoReply) String() string {
 func (*CreateDemoReply) ProtoMessage() {}
 
 func (x *CreateDemoReply) ProtoReflect() protoreflect.Message {
-	mi := &file_api_asset_v1_demo_proto_msgTypes[1]
+	mi := &file_asset_v1_demo_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -90,7 +90,7 @@ func (x *CreateDemoReply) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateDemoReply.ProtoReflect.Descriptor instead.
 func (*CreateDemoReply) Descriptor() ([]byte, []int) {
-	return file_api_asset_v1_demo_proto_rawDescGZIP(), []int{1}
+	return file_asset_v1_demo_proto_rawDescGZIP(), []int{1}
 }
 
 type UpdateDemoRequest struct {
@@ -101,7 +101,7 @@ type UpdateDemoRequest struct {
 
 func (x *UpdateDemoRequest) Reset() {
 	*x = UpdateDemoRequest{}
-	mi := &file_api_asset_v1_demo_proto_msgTypes[2]
+	mi := &file_asset_v1_demo_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -113,7 +113,7 @@ func (x *UpdateDemoRequest) String() string {
 func (*UpdateDemoRequest) ProtoMessage() {}
 
 func (x *UpdateDemoRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_asset_v1_demo_proto_msgTypes[2]
+	mi := &file_asset_v1_demo_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -126,7 +126,7 @@ func (x *UpdateDemoRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateDemoRequest.ProtoReflect.Descriptor instead.
 func (*UpdateDemoRequest) Descriptor() ([]byte, []int) {
-	return file_api_asset_v1_demo_proto_rawDescGZIP(), []int{2}
+	return file_asset_v1_demo_proto_rawDescGZIP(), []int{2}
 }
 
 type UpdateDemoReply struct {
@@ -137,7 +137,7 @@ type UpdateDemoReply struct {
 
 func (x *UpdateDemoReply) Reset() {
 	*x = UpdateDemoReply{}
-	mi := &file_api_asset_v1_demo_proto_msgTypes[3]
+	mi := &file_asset_v1_demo_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -149,7 +149,7 @@ func (x *UpdateDemoReply) String() string {
 func (*UpdateDemoReply) ProtoMessage() {}
 
 func (x *UpdateDemoReply) ProtoReflect() protoreflect.Message {
-	mi := &file_api_asset_v1_demo_proto_msgTypes[3]
+	mi := &file_asset_v1_demo_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -162,7 +162,7 @@ func (x *UpdateDemoReply) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateDemoReply.ProtoReflect.Descriptor instead.
 func (*UpdateDemoReply) Descriptor() ([]byte, []int) {
-	return file_api_asset_v1_demo_proto_rawDescGZIP(), []int{3}
+	return file_asset_v1_demo_proto_rawDescGZIP(), []int{3}
 }
 
 type DeleteDemoRequest struct {
@@ -173,7 +173,7 @@ type DeleteDemoRequest struct {
 
 func (x *DeleteDemoRequest) Reset() {
 	*x = DeleteDemoRequest{}
-	mi := &file_api_asset_v1_demo_proto_msgTypes[4]
+	mi := &file_asset_v1_demo_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -185,7 +185,7 @@ func (x *DeleteDemoRequest) String() string {
 func (*DeleteDemoRequest) ProtoMessage() {}
 
 func (x *DeleteDemoRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_asset_v1_demo_proto_msgTypes[4]
+	mi := &file_asset_v1_demo_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -198,7 +198,7 @@ func (x *DeleteDemoRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteDemoRequest.ProtoReflect.Descriptor instead.
 func (*DeleteDemoRequest) Descriptor() ([]byte, []int) {
-	return file_api_asset_v1_demo_proto_rawDescGZIP(), []int{4}
+	return file_asset_v1_demo_proto_rawDescGZIP(), []int{4}
 }
 
 type DeleteDemoReply struct {
@@ -209,7 +209,7 @@ type DeleteDemoReply struct {
 
 func (x *DeleteDemoReply) Reset() {
 	*x = DeleteDemoReply{}
-	mi := &file_api_asset_v1_demo_proto_msgTypes[5]
+	mi := &file_asset_v1_demo_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -221,7 +221,7 @@ func (x *DeleteDemoReply) String() string {
 func (*DeleteDemoReply) ProtoMessage() {}
 
 func (x *DeleteDemoReply) ProtoReflect() protoreflect.Message {
-	mi := &file_api_asset_v1_demo_proto_msgTypes[5]
+	mi := &file_asset_v1_demo_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -234,7 +234,7 @@ func (x *DeleteDemoReply) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteDemoReply.ProtoReflect.Descriptor instead.
 func (*DeleteDemoReply) Descriptor() ([]byte, []int) {
-	return file_api_asset_v1_demo_proto_rawDescGZIP(), []int{5}
+	return file_asset_v1_demo_proto_rawDescGZIP(), []int{5}
 }
 
 type GetDemoRequest struct {
@@ -245,7 +245,7 @@ type GetDemoRequest struct {
 
 func (x *GetDemoRequest) Reset() {
 	*x = GetDemoRequest{}
-	mi := &file_api_asset_v1_demo_proto_msgTypes[6]
+	mi := &file_asset_v1_demo_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -257,7 +257,7 @@ func (x *GetDemoRequest) String() string {
 func (*GetDemoRequest) ProtoMessage() {}
 
 func (x *GetDemoRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_asset_v1_demo_proto_msgTypes[6]
+	mi := &file_asset_v1_demo_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -270,7 +270,7 @@ func (x *GetDemoRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetDemoRequest.ProtoReflect.Descriptor instead.
 func (*GetDemoRequest) Descriptor() ([]byte, []int) {
-	return file_api_asset_v1_demo_proto_rawDescGZIP(), []int{6}
+	return file_asset_v1_demo_proto_rawDescGZIP(), []int{6}
 }
 
 type GetDemoReply struct {
@@ -281,7 +281,7 @@ type GetDemoReply struct {
 
 func (x *GetDemoReply) Reset() {
 	*x = GetDemoReply{}
-	mi := &file_api_asset_v1_demo_proto_msgTypes[7]
+	mi := &file_asset_v1_demo_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -293,7 +293,7 @@ func (x *GetDemoReply) String() string {
 func (*GetDemoReply) ProtoMessage() {}
 
 func (x *GetDemoReply) ProtoReflect() protoreflect.Message {
-	mi := &file_api_asset_v1_demo_proto_msgTypes[7]
+	mi := &file_asset_v1_demo_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -306,7 +306,7 @@ func (x *GetDemoReply) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetDemoReply.ProtoReflect.Descriptor instead.
 func (*GetDemoReply) Descriptor() ([]byte, []int) {
-	return file_api_asset_v1_demo_proto_rawDescGZIP(), []int{7}
+	return file_asset_v1_demo_proto_rawDescGZIP(), []int{7}
 }
 
 type ListDemoRequest struct {
@@ -317,7 +317,7 @@ type ListDemoRequest struct {
 
 func (x *ListDemoRequest) Reset() {
 	*x = ListDemoRequest{}
-	mi := &file_api_asset_v1_demo_proto_msgTypes[8]
+	mi := &file_asset_v1_demo_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -329,7 +329,7 @@ func (x *ListDemoRequest) String() string {
 func (*ListDemoRequest) ProtoMessage() {}
 
 func (x *ListDemoRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_asset_v1_demo_proto_msgTypes[8]
+	mi := &file_asset_v1_demo_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -342,7 +342,7 @@ func (x *ListDemoRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListDemoRequest.ProtoReflect.Descriptor instead.
 func (*ListDemoRequest) Descriptor() ([]byte, []int) {
-	return file_api_asset_v1_demo_proto_rawDescGZIP(), []int{8}
+	return file_asset_v1_demo_proto_rawDescGZIP(), []int{8}
 }
 
 type ListDemoReply struct {
@@ -353,7 +353,7 @@ type ListDemoReply struct {
 
 func (x *ListDemoReply) Reset() {
 	*x = ListDemoReply{}
-	mi := &file_api_asset_v1_demo_proto_msgTypes[9]
+	mi := &file_asset_v1_demo_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -365,7 +365,7 @@ func (x *ListDemoReply) String() string {
 func (*ListDemoReply) ProtoMessage() {}
 
 func (x *ListDemoReply) ProtoReflect() protoreflect.Message {
-	mi := &file_api_asset_v1_demo_proto_msgTypes[9]
+	mi := &file_asset_v1_demo_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -378,14 +378,14 @@ func (x *ListDemoReply) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListDemoReply.ProtoReflect.Descriptor instead.
 func (*ListDemoReply) Descriptor() ([]byte, []int) {
-	return file_api_asset_v1_demo_proto_rawDescGZIP(), []int{9}
+	return file_asset_v1_demo_proto_rawDescGZIP(), []int{9}
 }
 
-var File_api_asset_v1_demo_proto protoreflect.FileDescriptor
+var File_asset_v1_demo_proto protoreflect.FileDescriptor
 
-const file_api_asset_v1_demo_proto_rawDesc = "" +
+const file_asset_v1_demo_proto_rawDesc = "" +
 	"\n" +
-	"\x17api/asset/v1/demo.proto\x12\fapi.asset.v1\"\x13\n" +
+	"\x13asset/v1/demo.proto\x12\fapi.asset.v1\"\x13\n" +
 	"\x11CreateDemoRequest\"\x11\n" +
 	"\x0fCreateDemoReply\"\x13\n" +
 	"\x11UpdateDemoRequest\"\x11\n" +
@@ -408,19 +408,19 @@ const file_api_asset_v1_demo_proto_rawDesc = "" +
 	"\fapi.asset.v1P\x01Z-example.com/xxx/asset-service/api/asset/v1;v1b\x06proto3"
 
 var (
-	file_api_asset_v1_demo_proto_rawDescOnce sync.Once
-	file_api_asset_v1_demo_proto_rawDescData []byte
+	file_asset_v1_demo_proto_rawDescOnce sync.Once
+	file_asset_v1_demo_proto_rawDescData []byte
 )
 
-func file_api_asset_v1_demo_proto_rawDescGZIP() []byte {
-	file_api_asset_v1_demo_proto_rawDescOnce.Do(func() {
-		file_api_asset_v1_demo_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_api_asset_v1_demo_proto_rawDesc), len(file_api_asset_v1_demo_proto_rawDesc)))
+func file_asset_v1_demo_proto_rawDescGZIP() []byte {
+	file_asset_v1_demo_proto_rawDescOnce.Do(func() {
+		file_asset_v1_demo_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_asset_v1_demo_proto_rawDesc), len(file_asset_v1_demo_proto_rawDesc)))
 	})
-	return file_api_asset_v1_demo_proto_rawDescData
+	return file_asset_v1_demo_proto_rawDescData
 }
 
-var file_api_asset_v1_demo_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
-var file_api_asset_v1_demo_proto_goTypes = []any{
+var file_asset_v1_demo_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
+var file_asset_v1_demo_proto_goTypes = []any{
 	(*CreateDemoRequest)(nil), // 0: api.asset.v1.CreateDemoRequest
 	(*CreateDemoReply)(nil),   // 1: api.asset.v1.CreateDemoReply
 	(*UpdateDemoRequest)(nil), // 2: api.asset.v1.UpdateDemoRequest
@@ -432,7 +432,7 @@ var file_api_asset_v1_demo_proto_goTypes = []any{
 	(*ListDemoRequest)(nil),   // 8: api.asset.v1.ListDemoRequest
 	(*ListDemoReply)(nil),     // 9: api.asset.v1.ListDemoReply
 }
-var file_api_asset_v1_demo_proto_depIdxs = []int32{
+var file_asset_v1_demo_proto_depIdxs = []int32{
 	0, // 0: api.asset.v1.Demo.CreateDemo:input_type -> api.asset.v1.CreateDemoRequest
 	2, // 1: api.asset.v1.Demo.UpdateDemo:input_type -> api.asset.v1.UpdateDemoRequest
 	4, // 2: api.asset.v1.Demo.DeleteDemo:input_type -> api.asset.v1.DeleteDemoRequest
@@ -450,26 +450,26 @@ var file_api_asset_v1_demo_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_api_asset_v1_demo_proto_init() }
-func file_api_asset_v1_demo_proto_init() {
-	if File_api_asset_v1_demo_proto != nil {
+func init() { file_asset_v1_demo_proto_init() }
+func file_asset_v1_demo_proto_init() {
+	if File_asset_v1_demo_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_asset_v1_demo_proto_rawDesc), len(file_api_asset_v1_demo_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_asset_v1_demo_proto_rawDesc), len(file_asset_v1_demo_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_api_asset_v1_demo_proto_goTypes,
-		DependencyIndexes: file_api_asset_v1_demo_proto_depIdxs,
-		MessageInfos:      file_api_asset_v1_demo_proto_msgTypes,
+		GoTypes:           file_asset_v1_demo_proto_goTypes,
+		DependencyIndexes: file_asset_v1_demo_proto_depIdxs,
+		MessageInfos:      file_asset_v1_demo_proto_msgTypes,
 	}.Build()
-	File_api_asset_v1_demo_proto = out.File
-	file_api_asset_v1_demo_proto_goTypes = nil
-	file_api_asset_v1_demo_proto_depIdxs = nil
+	File_asset_v1_demo_proto = out.File
+	file_asset_v1_demo_proto_goTypes = nil
+	file_asset_v1_demo_proto_depIdxs = nil
 }

@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-http v2.8.4
 // - protoc             v4.23.4
-// source: api/interface/v1/demo.proto
+// source: interface/v1/demo.proto
 
 package v1
 
@@ -27,7 +27,7 @@ type DemoHTTPServer interface {
 
 func RegisterDemoHTTPServer(s *http.Server, srv DemoHTTPServer) {
 	r := s.Route("/")
-	r.GET("/role/list", _Demo_ListPage0_HTTP_Handler(srv))
+	r.GET("/v1/role/list", _Demo_ListPage0_HTTP_Handler(srv))
 }
 
 func _Demo_ListPage0_HTTP_Handler(srv DemoHTTPServer) func(ctx http.Context) error {
@@ -63,7 +63,7 @@ func NewDemoHTTPClient(client *http.Client) DemoHTTPClient {
 
 func (c *DemoHTTPClientImpl) ListPage(ctx context.Context, in *RoleListRequest, opts ...http.CallOption) (*RoleListReply, error) {
 	var out RoleListReply
-	pattern := "/role/list"
+	pattern := "/v1/role/list"
 	path := binding.EncodeURL(pattern, in, true)
 	opts = append(opts, http.Operation(OperationDemoListPage))
 	opts = append(opts, http.PathTemplate(pattern))

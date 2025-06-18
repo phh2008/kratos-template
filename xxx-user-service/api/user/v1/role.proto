@@ -10,29 +10,29 @@ option java_package = "api.user.v1";
 service Role {
   rpc ListPage (RoleListRequest) returns (RoleListReply){
     option (google.api.http) = {
-      get: "/role/list",
+      get: "/v1/role/list",
     };
   }
   rpc Add (RoleSaveRequest) returns (RoleReply){
     option (google.api.http) = {
-      post: "/role/add",
+      post: "/v1/role/add",
       body: "*",
     };
   }
   rpc GetByCode(RoleCodeRequest) returns (RoleReply){
     option (google.api.http) = {
-      get: "/role/code",
+      get: "/v1/role/code",
     };
   }
   rpc AssignPermission(RoleAssignPermRequest) returns (RoleOk){
     option (google.api.http) = {
-      post: "/role/assignPerm",
+      post: "/v1/role/assignPerm",
       body: "*",
     };
   }
   rpc DeleteById (RoleDeleteRequest) returns (RoleOk){
     option (google.api.http) = {
-      post: "/role/delete",
+      post: "/v1/role/delete",
       body: "*",
     };
   }

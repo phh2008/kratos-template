@@ -12,48 +12,48 @@ service User {
   // 用户例表
   rpc ListPage (UserListRequest) returns (UserListReply){
     option (google.api.http) = {
-      get: "/user/list",
+      get: "/v1/user/list",
     };
   }
   // 邮箱注册
   rpc CreateByEmail (UserEmailRequest) returns (UserReply){
     option (google.api.http) = {
-      post: "/user/createByEmail",
+      post: "/v1/user/createByEmail",
       body: "*",
     };
   }
   // 邮箱登录
   rpc LoginByEmail (UserEmailLoginRequest) returns (LoginReply){
     option (google.api.http) = {
-      post: "/user/login",
+      post: "/v1/user/login",
       body: "*",
     };
   }
   // 分配角色
   rpc AssignRole (AssignRoleRequest) returns (UserOk){
     option (google.api.http) = {
-      post: "/user/assignRole",
+      post: "/v1/user/assignRole",
       body: "*",
     };
   }
   // 删除用户
   rpc DeleteById (UserDeleteRequest) returns (UserOk){
     option (google.api.http) = {
-      post: "/user/delete",
+      post: "/v1/user/delete",
       body: "*",
     };
   }
   // 校验权限
   rpc CheckPermission (CheckPermissionRequest) returns (UserOk){
     option (google.api.http) = {
-      post: "/user/checkPermission",
+      post: "/v1/user/checkPermission",
       body: "*",
     };
   }
   // 验证token
   rpc VerifyToken (UserVerifyTokenRequest) returns (UserClaimsReply){
     option (google.api.http) = {
-      post: "/user/verifyToken",
+      post: "/v1/user/verifyToken",
       body: "*",
     };
   }
