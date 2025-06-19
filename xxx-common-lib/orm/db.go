@@ -7,6 +7,7 @@ import (
     "gorm.io/driver/mysql"
     "gorm.io/gorm"
     "gorm.io/gorm/logger"
+    "time"
 )
 
 func NewDB(dsn string) *gorm.DB {
@@ -16,6 +17,14 @@ func NewDB(dsn string) *gorm.DB {
     if err != nil {
         panic(err)
     }
+    // 设置连接池参数
+    sqlDB, err := gdb.DB()
+    if err != nil {
+        panic(err)
+    }
+    sqlDB.SetMaxIdleConns(10)           // 空闲最大连接数
+    sqlDB.SetMaxOpenConns(60)           // 最大打开连接数
+    sqlDB.SetConnMaxLifetime(time.Hour) // 连接可重用的时长
     return gdb
 }
 
