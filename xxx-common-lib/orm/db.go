@@ -1,18 +1,25 @@
 package orm
 
 import (
+    "example.com/xxx/common-lib/logger/glog"
     "example.com/xxx/common-lib/model/page"
     "example.com/xxx/common-lib/util"
     "fmt"
     "gorm.io/driver/mysql"
     "gorm.io/gorm"
-    "gorm.io/gorm/logger"
+    "log/slog"
     "time"
 )
 
 func NewDB(dsn string) *gorm.DB {
+    cfg := glog.NewConfig(slog.Default().Handler()).
+        //WithGroupKey("db").
+        WithSlowThreshold(time.Second).
+        WithIgnoreRecordNotFoundError(true).
+        WithTraceAll(true)
+    glogger := glog.NewWithConfig(cfg)
     var gdb, err = gorm.Open(mysql.Open(dsn), &gorm.Config{
-        Logger: logger.Default.LogMode(logger.Info),
+        Logger: glogger,
     })
     if err != nil {
         panic(err)

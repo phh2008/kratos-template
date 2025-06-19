@@ -1,15 +1,15 @@
 package main
 
 import (
-    "flag"
     "example.com/xxx/common-lib/logger"
     "example.com/xxx/user-service/internal/conf"
+    "flag"
     "github.com/go-kratos/kratos/v2/registry"
     "go.uber.org/zap"
     "go.uber.org/zap/exp/zapslog"
     "log/slog"
     "os"
-
+    
     kratoszap "github.com/go-kratos/kratos/contrib/log/zap/v2"
     "github.com/go-kratos/kratos/v2"
     "github.com/go-kratos/kratos/v2/log"
@@ -25,9 +25,9 @@ var (
     Version = "v1.0.0"
     // flagconf is the config flag.
     flagconf string
-
+    
     id, _ = os.Hostname()
-
+    
     active string
 )
 
@@ -39,18 +39,7 @@ func init() {
 func newApp(gs *grpc.Server, zapLog *zap.Logger, rr registry.Registrar) *kratos.App {
     // 包装 zap logger
     zlog := kratoszap.NewLogger(zapLog.WithOptions(zap.AddCallerSkip(3)))
-    wrapLog := log.With(zlog,
-        "service.name", Name,
-        "service.version", Version,
-        "ts", log.DefaultTimestamp,
-    )
-    // slog 全局日志
-    sl := slog.New(zapslog.NewHandler(zapLog.Core(), zapslog.WithCaller(true)))
-    sl = sl.With(
-        slog.String("service.name", Name),
-        slog.String("service.version", Version),
-    )
-    slog.SetDefault(sl)
+    wrapLog := log.With(zlog)
     // kratos 全局日志
     log.SetLogger(wrapLog)
     return kratos.New(
@@ -81,13 +70,20 @@ func main() {
         Compress:   bc.Log.Compress,
         LocalTime:  bc.Log.LocalTime,
     })
+    zapLog = zapLog.With(
+        zap.String("service.name", Name),
+        zap.String("service.version", Version),
+    )
+    // slog 配置
+    slogger := slog.New(zapslog.NewHandler(zapLog.Core(), zapslog.WithCaller(true)))
+    slog.SetDefault(slogger)
     // 依赖注入
     app, cleanup, err := wireApp(bc, zapLog)
     if err != nil {
         panic(err)
     }
     defer cleanup()
-
+    
     // start and wait for stop signal
     if err := app.Run(); err != nil {
         panic(err)
