@@ -13,7 +13,7 @@ func init() {
     soft_delete.FlagActived = 1
 }
 
-var _ = base.IBaseRepo(new(BaseRepo[any]))
+var _ base.IBaseRepo = (*BaseRepo[any])(nil)
 
 type dbTxKey struct{}
 
