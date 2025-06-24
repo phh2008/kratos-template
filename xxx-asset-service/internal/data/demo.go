@@ -30,12 +30,13 @@ func NewDemoRepo(data *Data) biz.DemoRepo {
 
 func (a *demoRepo) GetByID(ctx context.Context, id int64) (*model.Demo, error) {
     // TODO 调用 db 获取数据
-    entity, err := a.GetByID_(ctx, id)
+    var domain DemoEntity
+    err := a.GetDB(ctx).Limit(1).Find(&domain, id).Error
     if err != nil {
         return nil, err
     }
     var resp model.Demo
-    err = copier.Copy(&resp, entity)
+    err = copier.Copy(&resp, domain)
     if err != nil {
         return nil, err
     }

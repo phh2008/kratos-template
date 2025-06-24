@@ -59,7 +59,7 @@ func (a *permissionRepo) ListPage(ctx context.Context, req model.PermissionListR
 func (a *permissionRepo) Add(ctx context.Context, permission model.PermissionModel) (*model.PermissionModel, error) {
     var entity PermissionEntity
     _ = copier.Copy(&entity, permission)
-    err := a.Insert_(ctx, &entity)
+    err := a.GetDB(ctx).Create(&entity).Error
     if err != nil {
         return nil, err
     }
@@ -70,7 +70,7 @@ func (a *permissionRepo) Add(ctx context.Context, permission model.PermissionMod
 func (a *permissionRepo) Update(ctx context.Context, permission model.PermissionModel) (*model.PermissionModel, error) {
     var entity PermissionEntity
     _ = copier.Copy(&entity, &permission)
-    err := a.Update_(ctx, &entity)
+    err := a.GetDB(ctx).Model(&entity).Updates(entity).Error
     if err != nil {
         return nil, err
     }
@@ -82,7 +82,8 @@ func (a *permissionRepo) FindByIdList(ctx context.Context, idList []int64) ([]mo
     if len(idList) == 0 {
         return nil, nil
     }
-    list, err := a.ListByIds_(ctx, idList)
+    var list []PermissionEntity
+    err := a.GetDB(ctx).Find(&list, idList).Error
     if err != nil {
         return nil, err
     }
@@ -92,11 +93,12 @@ func (a *permissionRepo) FindByIdList(ctx context.Context, idList []int64) ([]mo
 }
 
 func (a *permissionRepo) GetById(ctx context.Context, id int64) (*model.PermissionModel, error) {
-    entity, err := a.GetByID_(ctx, id)
+    var domain PermissionEntity
+    err := a.GetDB(ctx).Limit(1).Find(&domain, id).Error
     if err != nil {
         return nil, err
     }
     var permission model.PermissionModel
-    _ = copier.Copy(&permission, entity)
+    _ = copier.Copy(&permission, domain)
     return &permission, nil
 }

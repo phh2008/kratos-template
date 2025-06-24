@@ -63,7 +63,7 @@ func (a *roleRepo) Add(ctx context.Context, req model.RoleModel) (*model.RoleMod
     }
     var entity RoleEntity
     _ = copier.Copy(&entity, req)
-    err = a.Insert_(ctx, &entity)
+    err = a.GetDB(ctx).Create(&entity).Error
     if err != nil {
         return nil, err
     }
@@ -72,12 +72,13 @@ func (a *roleRepo) Add(ctx context.Context, req model.RoleModel) (*model.RoleMod
 }
 
 func (a *roleRepo) GetById(ctx context.Context, id int64) (*model.RoleModel, error) {
-    entity, err := a.GetByID_(ctx, id)
+    var domain RoleEntity
+    err := a.GetDB(ctx).Limit(1).Find(&domain, id).Error
     if err != nil {
         return nil, err
     }
     var role model.RoleModel
-    _ = copier.Copy(&role, entity)
+    _ = copier.Copy(&role, domain)
     return &role, nil
 }
 
@@ -95,12 +96,13 @@ func (a *roleRepo) GetByCode(ctx context.Context, code string) (*model.RoleModel
 
 // DeleteById 删除角色
 func (a *roleRepo) DeleteById(ctx context.Context, id int64) error {
-    return a.DeleteByID_(ctx, id)
+    return a.GetDB(ctx).Delete(&RoleEntity{}, id).Error
 }
 
 // ListByIds 根据角色ID集合查询角色列表
 func (a *roleRepo) ListByIds(ctx context.Context, ids []int64) ([]model.RoleModel, error) {
-    list, err := a.ListByIds_(ctx, ids)
+    var list []RoleEntity
+    err := a.GetDB(ctx).Find(&list, ids).Error
     if err != nil {
         return nil, err
     }
