@@ -6,17 +6,17 @@ import (
 )
 
 type User struct {
-    Id       int64           `json:"id"`       // 主键id
-    CreateAt types.LocalTime `json:"createAt"` // 创建时间
-    UpdateAt types.LocalTime `json:"updateAt"` // 更新时间
-    CreateBy int64           `json:"createBy"` // 创建人
-    UpdateBy int64           `json:"updateBy"` // 更新人
-    RealName string          `json:"realName"` // 姓名
-    UserName string          `json:"userName"` // 用户名
-    Email    string          `json:"email"`    // 邮箱
-    Password string          `json:"password"` // 密码
-    Status   int             `json:"status"`   //状态: 1-启用，2-禁用
-    RoleCode string          `json:"roleCode"` // 角色编号
+    Id       int64               `json:"id"`       // 主键id
+    CreateAt types.LocalDateTime `json:"createAt"` // 创建时间
+    UpdateAt types.LocalDateTime `json:"updateAt"` // 更新时间
+    CreateBy int64               `json:"createBy"` // 创建人
+    UpdateBy int64               `json:"updateBy"` // 更新人
+    RealName string              `json:"realName"` // 姓名
+    UserName string              `json:"userName"` // 用户名
+    Email    string              `json:"email"`    // 邮箱
+    Password string              `json:"password"` // 密码
+    Status   int                 `json:"status"`   //状态: 1-启用，2-禁用
+    RoleCode string              `json:"roleCode"` // 角色编号
 }
 
 type UserListReq struct {

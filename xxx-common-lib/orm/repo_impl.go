@@ -75,8 +75,8 @@ func (a *BaseRepo[T]) ListByIds_(ctx context.Context, ids []int64) ([]T, error) 
 
 type BaseEntity struct {
     ID       int64                 `gorm:"column:id;primaryKey" json:"id"`                                                  // 主键ID
-    CreateAt types.LocalTime       `gorm:"column:create_at;autoCreateTime" json:"createAt"`                                 // 创建时间
-    UpdateAt types.LocalTime       `gorm:"column:update_at;autoUpdateTime" json:"updateAt"`                                 // 更新时间
+    CreateAt types.LocalDateTime   `gorm:"column:create_at;autoCreateTime" json:"createAt"`                                 // 创建时间
+    UpdateAt types.LocalDateTime   `gorm:"column:update_at;autoUpdateTime" json:"updateAt"`                                 // 更新时间
     CreateBy int64                 `gorm:"column:create_by" json:"createBy"`                                                // 创建人
     UpdateBy int64                 `gorm:"column:update_by" json:"updateBy"`                                                // 更新人
     Deleted  soft_delete.DeletedAt `gorm:"column:deleted;softDelete:flag,DeletedAtField:UpdateAt,default:1" json:"deleted"` // 是否删除 1-否，2-是
