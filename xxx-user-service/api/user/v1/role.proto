@@ -55,8 +55,8 @@ message RoleReply {
 
 message RoleListReply {
   int64 count = 1;
-  int32 page_no = 2;
-  int32 page_size = 3;
+  int32 pageNo = 2;
+  int32 pageSize = 3;
   repeated RoleReply roleList = 4;
 }
 

@@ -32,10 +32,10 @@ CREATE TABLE `sys_permission`  (
   `action` varchar(50) NOT NULL DEFAULT '' COMMENT '权限动作：比如get、post、delete等',
   `perm_type` tinyint NOT NULL DEFAULT 1 COMMENT '权限类型：1-菜单、2-按钮',
   `parent_id` bigint NOT NULL DEFAULT 0 COMMENT '父级ID：资源层级关系',
-  `create_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `update_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
-  `create_by` bigint NOT NULL DEFAULT 0 COMMENT '创建人',
-  `update_by` bigint NOT NULL DEFAULT 0 COMMENT '更新人',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  `created_by` varchar(50) DEFAULT NULL COMMENT '创建人',
+  `updated_by` varchar(50) DEFAULT NULL COMMENT '更新人',
   `deleted` tinyint NOT NULL DEFAULT 1 COMMENT '是否删除：1-否，2-是',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB COMMENT = '权限表';
@@ -53,10 +53,10 @@ CREATE TABLE `sys_role`  (
   `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键ID',
   `role_code` varchar(50) NOT NULL DEFAULT '' COMMENT '角色编号',
   `role_name` varchar(50) NOT NULL DEFAULT '' COMMENT '角色名称',
-  `create_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `update_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
-  `create_by` bigint NOT NULL DEFAULT 0 COMMENT '创建人',
-  `update_by` bigint NOT NULL DEFAULT 0 COMMENT '更新人',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  `created_by` varchar(50) DEFAULT NULL COMMENT '创建人',
+  `updated_by` varchar(50) DEFAULT NULL COMMENT '更新人',
   `deleted` tinyint NOT NULL DEFAULT 1 COMMENT '是否删除：1-否，2-是',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB COMMENT = '角色表';
@@ -94,10 +94,10 @@ CREATE TABLE `sys_user`  (
   `password` varchar(200) NOT NULL DEFAULT '' COMMENT '密码',
   `status` tinyint NOT NULL DEFAULT 1 COMMENT '状态: 1-启用，2-禁用',
   `role_code` varchar(50) NOT NULL DEFAULT '' COMMENT '角色编号',
-  `create_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `update_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
-  `create_by` bigint NOT NULL DEFAULT 0 COMMENT '创建人',
-  `update_by` bigint NOT NULL DEFAULT 0 COMMENT '更新人',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  `created_by` varchar(50) DEFAULT NULL COMMENT '创建人',
+  `updated_by` varchar(50) DEFAULT NULL COMMENT '更新人',
   `deleted` tinyint NOT NULL DEFAULT 1 COMMENT '是否删除：1-否，2-是',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB COMMENT = '用户表';

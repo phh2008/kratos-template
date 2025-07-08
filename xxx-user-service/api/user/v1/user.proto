@@ -98,9 +98,9 @@ message UserListReply {
   // 总数量
   int64 count = 1;
   // 当前页
-  int32 page_no = 2;
+  int32 pageNo = 2;
   // 每页数
-  int32 page_size = 3;
+  int32 pageSize = 3;
   // 用户例表
   repeated UserReply userList = 4;
 }
