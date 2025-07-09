@@ -12,6 +12,7 @@ import (
 	"example.com/xxx/asset-service/internal/data"
 	"example.com/xxx/asset-service/internal/server"
 	"example.com/xxx/asset-service/internal/service"
+	"example.com/xxx/common-lib/orm"
 	"github.com/go-kratos/kratos/v2"
 	"go.uber.org/zap"
 )
@@ -29,7 +30,8 @@ func wireApp(bootstrap *conf.Bootstrap, logger *zap.Logger) (*kratos.App, func()
 	if err != nil {
 		return nil, nil, err
 	}
-	demoRepo := data.NewDemoRepo(dataData)
+	baseRepo := orm.NewBaseRepo(db)
+	demoRepo := data.NewDemoRepo(dataData, baseRepo)
 	demoUseCase := biz.NewDemoUseCase(demoRepo)
 	demoService := service.NewDemoService(demoUseCase)
 	grpcServer := server.NewGRPCServer(bootstrap, demoService)

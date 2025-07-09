@@ -10,13 +10,13 @@ import (
 	"github.com/jinzhu/copier"
 )
 
-type RoleEntity struct {
-	orm.BaseEntity
+type RolePO struct {
+	orm.BasePO
 	RoleCode string // 角色编码
 	RoleName string // 角色名称
 }
 
-func (RoleEntity) TableName() string {
+func (RolePO) TableName() string {
 	return "sys_role"
 }
 
@@ -37,7 +37,7 @@ func NewRoleRepo(data *Data, baseRepo *orm.BaseRepo) biz.RoleRepo {
 
 func (a *roleRepo) ListPage(ctx context.Context, req model.RoleListReq) (*page.PageData[*model.RoleModel], error) {
 	db := a.GetDB(ctx)
-	db = db.Model(&RoleEntity{})
+	db = db.Model(&RolePO{})
 	if req.RoleCode != "" {
 		db = db.Where("role_code like ?", "%"+req.RoleCode+"%")
 	}
@@ -61,7 +61,7 @@ func (a *roleRepo) Add(ctx context.Context, req model.RoleModel) (*model.RoleMod
 	if role.Id > 0 {
 		return nil, errors.New(500, "role_exist", "角色已存在")
 	}
-	var entity RoleEntity
+	var entity RolePO
 	_ = copier.Copy(&entity, req)
 	err = a.GetDB(ctx).Create(&entity).Error
 	if err != nil {
@@ -72,7 +72,7 @@ func (a *roleRepo) Add(ctx context.Context, req model.RoleModel) (*model.RoleMod
 }
 
 func (a *roleRepo) GetById(ctx context.Context, id int64) (*model.RoleModel, error) {
-	var domain RoleEntity
+	var domain RolePO
 	err := a.GetDB(ctx).Limit(1).Find(&domain, id).Error
 	if err != nil {
 		return nil, err
@@ -84,7 +84,7 @@ func (a *roleRepo) GetById(ctx context.Context, id int64) (*model.RoleModel, err
 
 // GetByCode 根据角色编号获取角色
 func (a *roleRepo) GetByCode(ctx context.Context, code string) (*model.RoleModel, error) {
-	var entity RoleEntity
+	var entity RolePO
 	err := a.GetDB(ctx).Where("role_code=?", code).Limit(1).Find(&entity).Error
 	if err != nil {
 		return nil, err
@@ -96,12 +96,12 @@ func (a *roleRepo) GetByCode(ctx context.Context, code string) (*model.RoleModel
 
 // DeleteById 删除角色
 func (a *roleRepo) DeleteById(ctx context.Context, id int64) error {
-	return a.GetDB(ctx).Delete(&RoleEntity{}, id).Error
+	return a.GetDB(ctx).Delete(&RolePO{}, id).Error
 }
 
 // ListByIds 根据角色ID集合查询角色列表
 func (a *roleRepo) ListByIds(ctx context.Context, ids []int64) ([]model.RoleModel, error) {
-	var list []RoleEntity
+	var list []RolePO
 	err := a.GetDB(ctx).Find(&list, ids).Error
 	if err != nil {
 		return nil, err

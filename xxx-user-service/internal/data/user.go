@@ -13,8 +13,8 @@ import (
 	"time"
 )
 
-type UserEntity struct {
-	orm.BaseEntity
+type UserPO struct {
+	orm.BasePO
 	RealName string `json:"realName"`                // 姓名
 	UserName string `json:"userName"`                // 用户名
 	Email    string `json:"email"`                   // 邮箱
@@ -23,7 +23,7 @@ type UserEntity struct {
 	RoleCode string `json:"roleCode"`                // 角色编号
 }
 
-func (UserEntity) TableName() string {
+func (UserPO) TableName() string {
 	return "sys_user"
 }
 
@@ -44,7 +44,7 @@ func NewUserRepo(data *Data, baseRepo *orm.BaseRepo) biz.UserRepo {
 
 func (a *userRepo) ListPage(ctx context.Context, req model.UserListReq) (*page.PageData[*model.User], error) {
 	db := a.GetDB(ctx)
-	db = db.Model(&UserEntity{})
+	db = db.Model(&UserPO{})
 	if req.RealName != "" {
 		db = db.Where("real_name like ?", "%"+req.RealName+"%")
 	}
@@ -65,8 +65,8 @@ func (a *userRepo) ListPage(ctx context.Context, req model.UserListReq) (*page.P
 
 // GetByEmail 根据 email 查询
 func (a *userRepo) GetByEmail(ctx context.Context, email string) (*model.User, error) {
-	var entity UserEntity
-	err := a.GetDB(ctx).Model(UserEntity{}).Where("email=?", email).First(&entity).Error
+	var entity UserPO
+	err := a.GetDB(ctx).Model(UserPO{}).Where("email=?", email).First(&entity).Error
 	if err != nil {
 		return nil, err
 	}
@@ -77,7 +77,7 @@ func (a *userRepo) GetByEmail(ctx context.Context, email string) (*model.User, e
 
 // Add 添加用户
 func (a *userRepo) Add(ctx context.Context, user model.User) (*model.User, error) {
-	var entity UserEntity
+	var entity UserPO
 	_ = copier.Copy(&entity, &user)
 	err := a.GetDB(ctx).Create(&entity).Error
 	_ = copier.Copy(&user, &entity)
@@ -86,19 +86,19 @@ func (a *userRepo) Add(ctx context.Context, user model.User) (*model.User, error
 
 // SetRole 设置角色
 func (a *userRepo) SetRole(ctx context.Context, userId int64, role string) error {
-	db := a.GetDB(ctx).Model(&UserEntity{}).Where("id=?", userId).Update("role_code", role)
+	db := a.GetDB(ctx).Model(&UserPO{}).Where("id=?", userId).Update("role_code", role)
 	return db.Error
 }
 
 // DeleteById 删除用户
 func (a *userRepo) DeleteById(ctx context.Context, id int64) error {
-	db := a.GetDB(ctx).Delete(&UserEntity{}, id)
+	db := a.GetDB(ctx).Delete(&UserPO{}, id)
 	return db.Error
 }
 
 // CancelRole 撤销用户角色
 func (a *userRepo) CancelRole(ctx context.Context, roleCode string) error {
-	ret := a.GetDB(ctx).Model(&UserEntity{}).Where("role_code=?", roleCode).Update("role_code", "")
+	ret := a.GetDB(ctx).Model(&UserPO{}).Where("role_code=?", roleCode).Update("role_code", "")
 	return ret.Error
 }
 

@@ -44,7 +44,7 @@ func (a *BaseRepo) GetDB(ctx context.Context) *gorm.DB {
 	return db
 }
 
-type BaseEntity struct {
+type BasePO struct {
 	ID        int64                 `gorm:"column:id;primaryKey" json:"id"`                                                   // 主键ID
 	CreatedAt types.LocalDateTime   `gorm:"column:created_at;autoCreateTime" json:"createdAt"`                                // 创建时间
 	UpdatedAt types.LocalDateTime   `gorm:"column:updated_at;autoUpdateTime" json:"updatedAt"`                                // 更新时间

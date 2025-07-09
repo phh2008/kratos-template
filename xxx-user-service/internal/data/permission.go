@@ -9,8 +9,8 @@ import (
 	"github.com/jinzhu/copier"
 )
 
-type PermissionEntity struct {
-	orm.BaseEntity
+type PermissionPO struct {
+	orm.BasePO
 	PermName string // 权限名称
 	Url      string // URL路径
 	Action   string // 权限动作：比如get、post、delete等
@@ -18,7 +18,7 @@ type PermissionEntity struct {
 	ParentId int64  `gorm:"default:0"` // 父级ID：资源层级关系（0表示顶级）
 }
 
-func (PermissionEntity) TableName() string {
+func (PermissionPO) TableName() string {
 	return "sys_permission"
 }
 
@@ -39,7 +39,7 @@ func NewPermissionRepo(data *Data, baseRepo *orm.BaseRepo) biz.PermissionRepo {
 
 func (a *permissionRepo) ListPage(ctx context.Context, req model.PermissionListReq) (*page.PageData[*model.PermissionModel], error) {
 	db := a.GetDB(ctx)
-	db = db.Model(&PermissionEntity{})
+	db = db.Model(&PermissionPO{})
 	if req.PermName != "" {
 		db = db.Where("perm_name like ?", "%"+req.PermName+"%")
 	}
@@ -57,7 +57,7 @@ func (a *permissionRepo) ListPage(ctx context.Context, req model.PermissionListR
 }
 
 func (a *permissionRepo) Add(ctx context.Context, permission model.PermissionModel) (*model.PermissionModel, error) {
-	var entity PermissionEntity
+	var entity PermissionPO
 	_ = copier.Copy(&entity, permission)
 	err := a.GetDB(ctx).Create(&entity).Error
 	if err != nil {
@@ -68,7 +68,7 @@ func (a *permissionRepo) Add(ctx context.Context, permission model.PermissionMod
 }
 
 func (a *permissionRepo) Update(ctx context.Context, permission model.PermissionModel) (*model.PermissionModel, error) {
-	var entity PermissionEntity
+	var entity PermissionPO
 	_ = copier.Copy(&entity, &permission)
 	err := a.GetDB(ctx).Model(&entity).Updates(entity).Error
 	if err != nil {
@@ -82,7 +82,7 @@ func (a *permissionRepo) FindByIdList(ctx context.Context, idList []int64) ([]mo
 	if len(idList) == 0 {
 		return nil, nil
 	}
-	var list []PermissionEntity
+	var list []PermissionPO
 	err := a.GetDB(ctx).Find(&list, idList).Error
 	if err != nil {
 		return nil, err
@@ -93,7 +93,7 @@ func (a *permissionRepo) FindByIdList(ctx context.Context, idList []int64) ([]mo
 }
 
 func (a *permissionRepo) GetById(ctx context.Context, id int64) (*model.PermissionModel, error) {
-	var domain PermissionEntity
+	var domain PermissionPO
 	err := a.GetDB(ctx).Limit(1).Find(&domain, id).Error
 	if err != nil {
 		return nil, err

@@ -8,13 +8,13 @@ import (
 	"github.com/jinzhu/copier"
 )
 
-type RolePermissionEntity struct {
+type RolePermissionPO struct {
 	Id     int64 // 主键id
 	RoleId int64 // 角色id
 	PermId int64 // 权限id
 }
 
-func (RolePermissionEntity) TableName() string {
+func (RolePermissionPO) TableName() string {
 	return "sys_role_permission"
 }
 
@@ -34,7 +34,7 @@ func NewRolePermissionRepo(data *Data, baseRepo *orm.BaseRepo) biz.RolePermissio
 }
 
 func (a *rolePermissionRepo) DeleteByRoleId(ctx context.Context, roleId int64) error {
-	db := a.GetDB(ctx).Where("role_id=?", roleId).Delete(&RolePermissionEntity{})
+	db := a.GetDB(ctx).Where("role_id=?", roleId).Delete(&RolePermissionPO{})
 	return db.Error
 }
 
@@ -42,7 +42,7 @@ func (a *rolePermissionRepo) BatchAdd(ctx context.Context, list []model.RolePerm
 	if len(list) == 0 {
 		return nil
 	}
-	var listEntity []RolePermissionEntity
+	var listEntity []RolePermissionPO
 	_ = copier.Copy(&listEntity, list)
 	err := a.GetDB(ctx).Create(&listEntity).Error
 	return err
@@ -50,7 +50,7 @@ func (a *rolePermissionRepo) BatchAdd(ctx context.Context, list []model.RolePerm
 
 func (a *rolePermissionRepo) ListRoleIdByPermId(ctx context.Context, permId int64) []int64 {
 	var roleIds []int64
-	a.GetDB(ctx).Model(&RolePermissionEntity{}).
+	a.GetDB(ctx).Model(&RolePermissionPO{}).
 		Where("perm_id=?", permId).
 		Pluck("role_id", &roleIds)
 	return roleIds

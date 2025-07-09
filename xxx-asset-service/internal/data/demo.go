@@ -8,8 +8,8 @@ import (
 	"github.com/jinzhu/copier"
 )
 
-type DemoEntity struct {
-	orm.BaseEntity
+type DemoPO struct {
+	orm.BasePO
 	// other field ...
 }
 
@@ -30,7 +30,7 @@ func NewDemoRepo(data *Data, baseRepo *orm.BaseRepo) biz.DemoRepo {
 
 func (a *demoRepo) GetByID(ctx context.Context, id int64) (*model.Demo, error) {
 	// TODO 调用 db 获取数据
-	var domain DemoEntity
+	var domain DemoPO
 	err := a.GetDB(ctx).Limit(1).Find(&domain, id).Error
 	if err != nil {
 		return nil, err
