@@ -2,7 +2,6 @@ package data
 
 import (
 	"context"
-	"example.com/xxx/common-lib/orm"
 	"example.com/xxx/common-lib/oss"
 	"example.com/xxx/common-lib/oss/storage"
 	"example.com/xxx/interface/internal/conf"
@@ -12,15 +11,13 @@ import (
 	"github.com/go-kratos/kratos/v2/registry"
 	"github.com/go-kratos/kratos/v2/transport/grpc"
 	"github.com/hashicorp/consul/api"
-	"gorm.io/gorm"
 	"log/slog"
-
+	
 	"github.com/google/wire"
 )
 
 // ProviderSet is data providers.
 var ProviderSet = wire.NewSet(
-	//NewDb,
 	NewData,
 	NewDiscovery,
 	NewRegistrar,
@@ -33,14 +30,9 @@ var ProviderSet = wire.NewSet(
 
 // Data .
 type Data struct {
-	//DB *gorm.DB
 	uc userv1.UserClient
 	rc userv1.RoleClient
 	sc storage.Storage
-}
-
-func NewDb(c *conf.Bootstrap) *gorm.DB {
-	return orm.NewDB(c.Data.Database.Source)
 }
 
 // NewData .

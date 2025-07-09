@@ -7,6 +7,7 @@
 package main
 
 import (
+	"example.com/xxx/common-lib/orm"
 	"example.com/xxx/user-service/internal/biz"
 	"example.com/xxx/user-service/internal/conf"
 	"example.com/xxx/user-service/internal/data"
@@ -33,12 +34,13 @@ func wireApp(bootstrap *conf.Bootstrap, logger *zap.Logger) (*kratos.App, func()
 	if err != nil {
 		return nil, nil, err
 	}
-	userRepo := data.NewUserRepo(dataData)
+	baseRepo := orm.NewBaseRepo(db)
+	userRepo := data.NewUserRepo(dataData, baseRepo)
 	userUseCase := biz.NewUserUseCase(userRepo, jwtHelper, enforcer)
 	userService := service.NewUserService(userUseCase)
-	roleRepo := data.NewRoleRepo(dataData)
-	rolePermissionRepo := data.NewRolePermissionRepo(dataData)
-	permissionRepo := data.NewPermissionRepo(dataData)
+	roleRepo := data.NewRoleRepo(dataData, baseRepo)
+	rolePermissionRepo := data.NewRolePermissionRepo(dataData, baseRepo)
+	permissionRepo := data.NewPermissionRepo(dataData, baseRepo)
 	roleUseCase := biz.NewRoleUseCase(roleRepo, rolePermissionRepo, permissionRepo, enforcer, userRepo)
 	roleService := service.NewRoleService(roleUseCase)
 	permissionUseCase := biz.NewPermissionUseCase(permissionRepo, enforcer)

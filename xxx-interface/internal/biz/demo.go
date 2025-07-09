@@ -1,25 +1,23 @@
 package biz
 
 import (
-    "context"
-    "example.com/xxx/common-lib/base"
-    "example.com/xxx/common-lib/model/page"
-    "example.com/xxx/interface/internal/model"
+	"context"
+	"example.com/xxx/common-lib/model/page"
+	"example.com/xxx/interface/internal/model"
 )
 
 type DemoRepo interface {
-    base.IBaseRepo
-    ListRole(ctx context.Context, req model.RoleListReq) (*page.PageData[*model.RoleModel], error)
+	ListRole(ctx context.Context, req model.RoleListReq) (*page.PageData[*model.RoleModel], error)
 }
 
 type DemoUseCase struct {
-    demoRepo DemoRepo
+	demoRepo DemoRepo
 }
 
 func NewDemoUseCase(demoRepo DemoRepo) *DemoUseCase {
-    return &DemoUseCase{demoRepo: demoRepo}
+	return &DemoUseCase{demoRepo: demoRepo}
 }
 
 func (a *DemoUseCase) ListRole(ctx context.Context, req model.RoleListReq) (*page.PageData[*model.RoleModel], error) {
-    return a.demoRepo.ListRole(ctx, req)
+	return a.demoRepo.ListRole(ctx, req)
 }
