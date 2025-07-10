@@ -59,14 +59,23 @@ func (a *LocalFileSystem) Put(path string, reader io.Reader) (*storage.Object, e
 	}
 	// 创建文件
 	dst, err := os.Create(filepath.Clean(fullPath))
-	if err == nil {
-		defer dst.Close()
-		if seeker, ok := reader.(io.ReadSeeker); ok {
-			seeker.Seek(0, 0)
-		}
-		_, err = io.Copy(dst, reader)
+	if err != nil {
+		return nil, fmt.Errorf("创建文件失败: %s,error: %s", fullPath, err.Error())
 	}
-	return &storage.Object{Path: path, Name: filepath.Base(path), LastModified: time.Now()}, err
+	defer dst.Close()
+	if seeker, ok := reader.(io.ReadSeeker); ok {
+		seeker.Seek(0, 0)
+	}
+	_, err = io.Copy(dst, reader)
+	if err != nil {
+		return nil, fmt.Errorf("存储文件失败: %s,error: %s", fullPath, err.Error())
+	}
+	var size int64
+	info, err := dst.Stat()
+	if err == nil {
+		size = info.Size()
+	}
+	return &storage.Object{Path: path, Name: filepath.Base(path), LastModified: time.Now(), Size: size}, err
 }
 
 // Delete 删除文件
