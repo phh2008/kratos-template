@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package api.user.v1;
+import "google/protobuf/timestamp.proto";
+
+option go_package = "example.com/xxx/user-service/api/user/v1;v1";
+option java_multiple_files = true;
+option java_package = "api.user.v1";
+
+service File {
+  rpc Add (FileAddRequest) returns (FileAddReply){}
+}
+
+message FileAddRequest {
+  // 文件路径(保存后路径)
+  string filePath = 1;
+  // 文件大小(字节)
+  int64 fileSize = 2;
+  // 文件md5
+  string fileMd5 = 3;
+  // 媒介类型：image/jpeg 等
+  string mediaType = 4;
+  // 原始文件名
+  string originalName = 5;
+  // 创建时间
+  google.protobuf.Timestamp createdAt = 6;
+  // 更新时间
+  google.protobuf.Timestamp updatedAt = 7;
+  // 创建人
+  string createdBy = 8;
+  // 更新人
+  string updatedBy = 9;
+}
+
+message FileAddReply {
+  // 文件ID
+  int64 id = 1;
+  // 文件路径(保存后路径)
+  string filePath = 2;
+  // 文件大小(字节)
+  int64 fileSize = 3;
+  // 文件md5
+  string fileMd5 = 4;
+  // 媒介类型：image/jpeg 等
+  string mediaType = 5;
+  // 原始文件名
+  string originalName = 6;
+}

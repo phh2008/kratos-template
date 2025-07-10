@@ -23,8 +23,9 @@ var ProviderSet = wire.NewSet(
 	NewRegistrar,
 	NewUserServiceClient,
 	NewRoleServiceClient,
+	NewFileServiceClient,
+	NewFileRepo,
 	NewDemoRepo,
-	NewAttachmentRepo,
 	NewStorage,
 )
 
@@ -32,6 +33,7 @@ var ProviderSet = wire.NewSet(
 type Data struct {
 	uc userv1.UserClient
 	rc userv1.RoleClient
+	fc userv1.FileClient
 	sc storage.Storage
 }
 
@@ -40,16 +42,17 @@ func NewData(
 	c *conf.Bootstrap,
 	uc userv1.UserClient,
 	rc userv1.RoleClient,
+	fc userv1.FileClient,
 ) (*Data, func(), error) {
 	cleanup := func() {
 		slog.Info("closing the data resources")
 	}
-	return &Data{uc: uc, rc: rc}, cleanup, nil
+	return &Data{uc: uc, rc: rc, fc: fc}, cleanup, nil
 }
 
 func NewStorage() storage.Storage {
 	// 本地文件存储
-	return oss.NewStorage(&storage.Config{OssType: storage.TypeFileSystem, BaseFolder: "files"})
+	return oss.NewStorage(&storage.Config{OssType: storage.TypeFileSystem, BaseFolder: "/data/files"})
 }
 
 func NewDiscovery(conf *conf.Bootstrap) registry.Discovery {
@@ -105,5 +108,21 @@ func NewRoleServiceClient(r registry.Discovery) userv1.RoleClient {
 		panic(err)
 	}
 	c := userv1.NewRoleClient(conn)
+	return c
+}
+
+func NewFileServiceClient(r registry.Discovery) userv1.FileClient {
+	conn, err := grpc.DialInsecure(
+		context.Background(),
+		grpc.WithEndpoint("discovery:///user.service"),
+		grpc.WithDiscovery(r),
+		grpc.WithMiddleware(
+			recovery.Recovery(),
+		),
+	)
+	if err != nil {
+		panic(err)
+	}
+	c := userv1.NewFileClient(conn)
 	return c
 }

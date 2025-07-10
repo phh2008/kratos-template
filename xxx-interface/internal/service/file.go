@@ -4,38 +4,31 @@ import (
 	"context"
 	"example.com/xxx/common-lib/oss/storage"
 	"example.com/xxx/interface/internal/biz"
+	"example.com/xxx/interface/internal/model"
 	"github.com/gabriel-vasile/mimetype"
-	"github.com/jinzhu/copier"
 	"github.com/rs/xid"
+	"log/slog"
 	"mime"
 	"mime/multipart"
 	"path/filepath"
-	"time"
 )
 
-type AttachmentService struct {
-	attachmentUseCase *biz.AttachmentUseCase
-	store             storage.Storage
+type FileService struct {
+	fileUseCase *biz.FileUseCase
+	store       storage.Storage
 }
 
-func NewAttachmentService(attachmentUseCase *biz.AttachmentUseCase, store storage.Storage) *AttachmentService {
-	return &AttachmentService{attachmentUseCase: attachmentUseCase, store: store}
+func NewFileService(fileUseCase *biz.FileUseCase, store storage.Storage) *FileService {
+	return &FileService{fileUseCase: fileUseCase, store: store}
 }
 
 type UploadReq struct {
 	File       multipart.File
 	FileHeader *multipart.FileHeader
+	// 其它参数
 }
 
-type UploadResp struct {
-	Path         string    `json:"path"`         // 文件路径包含文件名(不包括根目录    )
-	Name         string    `json:"name"`         // 文件名
-	LastModified time.Time `json:"lastModified"` // 最后修改时间
-	Size         int64     `json:"size"`         // 文件大小
-	MimeType     string    `json:"mimeType"`     // 文件类型
-}
-
-func (a *AttachmentService) Upload(ctx context.Context, req *UploadReq) (*UploadResp, error) {
+func (a *FileService) Upload(ctx context.Context, req *UploadReq) (any, error) {
 	// 原始文件名称
 	originalName := req.FileHeader.Filename
 	file := req.File
@@ -60,8 +53,17 @@ func (a *AttachmentService) Upload(ctx context.Context, req *UploadReq) (*Upload
 	if mediaType == "" {
 		mediaType = mime.TypeByExtension(fileName)
 	}
-	var resp UploadResp
-	_ = copier.Copy(&resp, obj)
-	resp.MimeType = mediaType
+	// 调用文件服务保存文件信息
+	resp, err := a.fileUseCase.Add(ctx, &model.FileAddReq{
+		FilePath:     filepath.ToSlash(filePath),
+		FileSize:     obj.Size,
+		FileMd5:      "",
+		MediaType:    mediaType,
+		OriginalName: originalName,
+	})
+	if err != nil {
+		slog.Error("fileUseCase.Add error", "error", err)
+		return nil, err
+	}
 	return &resp, nil
 }

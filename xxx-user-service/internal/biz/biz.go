@@ -8,4 +8,5 @@ var ProviderSet = wire.NewSet(
 	NewRolePermissionUseCase,
 	NewRoleUseCase,
 	NewPermissionUseCase,
+	NewFileUseCase,
 )

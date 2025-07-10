@@ -106,3 +106,30 @@ CREATE TABLE `sys_user`  (
 -- Records of sys_user
 -- ----------------------------
 INSERT INTO `sys_user` VALUES (1000, 'test', 'test', 'test@test.com', '$2a$10$ITxtKZMlLHEqVQU7x5C62OGyDPiduBNGxKBEZRRJ/jkJnFG2.TSi.', 1, 'finance', '2025-06-12 00:00:00', '2025-06-12 00:00:00', 0, 0, 1);
+
+CREATE TABLE `sys_access_key`
+(
+    `id`         bigint       NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+    `access_id`  varchar(100) NOT NULL COMMENT 'access id',
+    `access_key` varchar(100) DEFAULT NULL COMMENT 'access key',
+    `remark`     varchar(500) DEFAULT NULL COMMENT '备注',
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `uniq_access_id` (`access_id`)
+) ENGINE=InnoDB COMMENT='访问密钥';
+
+CREATE TABLE `sys_file` (
+    `id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+    `file_path` varchar(500) NOT NULL DEFAULT '' COMMENT '文件路径(保存后路径)',
+    `file_size` bigint unsigned DEFAULT '0' COMMENT '文件大小(字节)',
+    `file_md5` varchar(100) DEFAULT NULL COMMENT '文件md5',
+    `media_type` varchar(200) DEFAULT '' COMMENT '媒介类型：image/jpeg 等',
+    `original_name` varchar(200) DEFAULT '' COMMENT '原始文件名',
+    `created_at` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '上传时间',
+    `updated_at` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+    `created_by` varchar(50) DEFAULT NULL COMMENT '创建人',
+    `updated_by` varchar(50) DEFAULT NULL COMMENT '更新人',
+    `deleted` tinyint unsigned DEFAULT '1' COMMENT '是否删除：1-否，2-是',
+    PRIMARY KEY (`id`) USING BTREE,
+    UNIQUE KEY `uniq_file_path` (`file_path`) USING BTREE,
+    KEY `idx_file_md5` (`file_md5`) USING BTREE
+) ENGINE=InnoDB COMMENT='文件信息表';
