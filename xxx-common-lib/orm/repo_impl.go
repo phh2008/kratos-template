@@ -50,5 +50,5 @@ type BasePO struct {
 	UpdatedAt types.LocalDateTime   `gorm:"column:updated_at;autoUpdateTime" json:"updatedAt"`                                // 更新时间
 	CreatedBy string                `gorm:"column:created_by" json:"createdBy"`                                               // 创建人
 	UpdatedBy string                `gorm:"column:updated_by" json:"updatedBy"`                                               // 更新人
-	Deleted   soft_delete.DeletedAt `gorm:"column:deleted;softDelete:flag,DeletedAtField:updatedAt,default:1" json:"deleted"` // 是否删除 1-否，2-是
+	Deleted   soft_delete.DeletedAt `gorm:"column:deleted;softDelete:flag,DeletedAtField:UpdatedAt;default:1" json:"deleted"` // 是否删除 1-否，2-是
 }
