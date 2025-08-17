@@ -1,6 +1,6 @@
 module example.com/xxx/interface
 
-go 1.24.2
+go 1.25.0
 
 replace example.com/xxx/interface/api => ./api
 
